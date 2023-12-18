@@ -1,0 +1,36 @@
+# API and Dashboard config
+api:
+  dashboard: true
+  insecure: true
+
+######### end ##########
+
+# Docker configuration backend
+providers:
+  docker:
+    exposedByDefault: false
+
+
+###### end #########
+
+# Traefik Logging
+log:
+  level: INFO
+
+########## end #######
+
+# Challenge HTTP
+certificatesResolvers:
+  myresolver:
+    acme:
+      email: roopesh.kappiyedath@genproresearch.com
+      storage: acme.json
+      httpChallenge:
+        entryPoint: web
+
+# Entrypoint
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"

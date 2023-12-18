@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  traefik:
+    #Traefik docker image version 
+    image: traefik:v2.10
+    # `--api.insecure=true` enables the traefik dashboar
+    # `--providers.docekr` tell traefik to connect the docker provider
+    command: --api.insecure=true --providers.docker --log.level=INFO
+    ports:
+      # Exposes port 80 for incoming web requests
+      - "80:80"
+      # This is for the dashboard
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  
+  # Add whoami service
+  whoami:
+    # A container that exposes an API to show its IP address.
+    image: containous/whoami
+    #  We set a label to tell Traefik to assign a hostname to the new service
+    labels:
+      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
+    # Scaling
+    deploy:
+      replicas: 3

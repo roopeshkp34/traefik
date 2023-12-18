@@ -1,0 +1,38 @@
+# API and Dashboard config
+api:
+  dashboard: true
+  insecure: true
+
+######### end ##########
+
+# Docker configuration backend
+providers:
+  docker:
+    exposedByDefault: false
+
+
+###### end #########
+
+# Traefik Logging
+log:
+  level: INFO
+
+####### end #######
+
+#  Access Log
+accessLog: {} # enabling access log
+
+#Configuring Multiple Filters
+# accessLog:
+#   filters:    
+#     statusCodes:
+#       - "404"
+#     retryAttempts: true
+#     minDuration: "10ms"
+
+# Entrypoint
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"

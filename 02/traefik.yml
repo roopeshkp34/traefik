@@ -1,0 +1,19 @@
+# API and Dashboard config
+api:
+  dashboard: true
+
+######### end ##########
+
+# Docker configuration backend
+providers:
+  docker:
+    watch: true
+    exposedByDefault: false
+    swarmMode: true
+
+
+###### end #########
+
+# Traefik Logging
+log:
+  level: INFO
